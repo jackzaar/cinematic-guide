@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>iPhone 17 Pro — Cinematic Video Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Preloader -->
+  <div class="preloader" id="preloader">
+    <div class="preloader-inner">
+      <div class="preloader-counter" id="preloaderCounter">0</div>
+      <div class="preloader-bar"><div class="preloader-fill" id="preloaderFill"></div></div>
+    </div>
+  </div>
+
+  <!-- Chapter Navigation Dots -->
+  <div class="chapter-nav" id="chapterNav">
+    <div class="chapter-dot active" data-index="0"><span class="dot-label">Intro</span></div>
+    <div class="chapter-dot" data-index="1"><span class="dot-label">Foundations</span></div>
+    <div class="chapter-dot" data-index="2"><span class="dot-label">Camera</span></div>
+    <div class="chapter-dot" data-index="3"><span class="dot-label">Visual</span></div>
+    <div class="chapter-dot" data-index="4"><span class="dot-label">Post</span></div>
+    <div class="chapter-dot" data-index="5"><span class="dot-label">Assets</span></div>
+    <div class="chapter-dot" data-index="6"><span class="dot-label">Field Guide</span></div>
+    <div class="chapter-dot" data-index="7"><span class="dot-label">Reminders</span></div>
+    <div class="chapter-nav-line"><div class="chapter-nav-progress" id="navProgress"></div></div>
+  </div>
+
+  <!-- Chapter Counter -->
+  <div class="chapter-counter" id="chapterCounter">
+    <span class="cc-current">01</span>
+    <span class="cc-sep">/</span>
+    <span class="cc-total">08</span>
+  </div>
+
+  <!-- Chapters Wrapper -->
+  <div class="chapters-wrapper" id="chaptersWrapper">
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- CHAPTER 0: HERO                            -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div class="chapter-panel" data-index="0" data-name="Intro">
+      <div class="chapter-bg">
+        <div class="blob blob--1"></div>
+        <div class="blob blob--2"></div>
+      </div>
+      <div class="chapter-grain"></div>
+      <div class="hero-letterbox hero-letterbox--top"></div>
+      <div class="hero-letterbox hero-letterbox--bottom"></div>
+
+      <div class="particles" aria-hidden="true">
+        <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+        <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+        <div class="particle"></div><div class="particle"></div>
+      </div>
+
+      <div class="hero-center">
+        <div class="hero-eyebrow">
+          <span class="hero-line-deco"></span>
+          <span>A Complete Reference</span>
+          <span class="hero-line-deco"></span>
+        </div>
+        <h1 class="hero-title">
+          <span class="title-line" data-split>iPhone 17 Pro</span>
+          <span class="title-line title-line--accent" data-split>Cinematic</span>
+          <span class="title-line" data-split>Video Guide</span>
+        </h1>
+        <p class="hero-sub">Shooting, editing, and grading cinematic video. From capture to final export.</p>
+        <div class="hero-workflow">
+          <span class="wf-chip">Blackmagic Camera</span>
+          <span class="wf-arrow">&rarr;</span>
+          <span class="wf-chip">VN / CapCut</span>
+          <span class="wf-arrow">&rarr;</span>
+          <span class="wf-chip">Social & Web</span>
+        </div>
+      </div>
+
+      <div class="scroll-hint">
+        <span>Scroll to begin</span>
+        <div class="scroll-hint-line"></div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- CHAPTER 1: FOUNDATIONS                     -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div class="chapter-panel" data-index="1" data-name="Foundations">
+      <div class="chapter-bg">
+        <div class="blob blob--1"></div>
+        <div class="blob blob--2"></div>
+      </div>
+      <div class="chapter-scroll">
+        <div class="chapter-inner">
+          <div class="ch-header">
+            <span class="ch-index">01</span>
+            <h2 class="ch-title">Understanding <em>ProRes vs Apple Log</em></h2>
+            <p class="ch-intro">These are two separate things that get confused often. They do different jobs.</p>
+          </div>
+
+          <div class="comparison">
+            <div class="cmp-card anim-card">
+              <div class="cmp-badge cmp-badge--teal">Codec</div>
+              <h3>ProRes</h3>
+              <p class="cmp-sub">The Quality of the Container</p>
+              <div class="cmp-block">
+                <h4>Normal Recording (HEVC)</h4>
+                <p>Compresses aggressively. ~350 MB/min at 4K. Push colors in editing and it falls apart &mdash; banding, artifacts, mushy detail.</p>
+                <span class="cmp-analogy">Think <strong>JPEG</strong></span>
+              </div>
+              <div class="cmp-block cmp-block--hl">
+                <h4>ProRes</h4>
+                <p>Barely compresses. ~6 GB/min at 4K. Color grade holds up beautifully &mdash; smooth gradients, clean detail.</p>
+                <span class="cmp-analogy">Think <strong>RAW</strong></span>
+              </div>
+              <p class="cmp-note">Tradeoff: Massive files. Requires external USB-C SSD.</p>
+            </div>
+            <div class="cmp-card anim-card">
+              <div class="cmp-badge cmp-badge--gold">Color Profile</div>
+              <h3>Apple Log</h3>
+              <p class="cmp-sub">How Light and Color Are Recorded</p>
+              <div class="cmp-block">
+                <h4>Standard Mode</h4>
+                <p>iPhone processes in real time &mdash; boosting contrast, saturating, sharpening. Looks great but baked in. Blown sky? Gone forever.</p>
+              </div>
+              <div class="cmp-block cmp-block--hl">
+                <h4>Apple Log</h4>
+                <p>Records flat, grey image on purpose. Preserves all detail in highlights and shadows. Magic happens in post-production.</p>
+              </div>
+              <div class="analogy-box">
+                <span class="analogy-lbl">Analogy</span>
+                <p><strong>Standard</strong> = Fully cooked meal at your table.</p>
+                <p><strong>Apple Log</strong> = Raw ingredients &mdash; you control every flavor.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="combo-table anim-card">
+            <h3>How They Combine</h3>
+            <div class="tbl-wrap">
+              <table>
+                <thead><tr><th>Codec</th><th>Profile</th><th>Size</th><th>Flex</th><th>Best For</th></tr></thead>
+                <tbody>
+                  <tr><td><span class="tag">HEVC</span></td><td>Standard</td><td>~350 MB/min</td><td class="flex-low">Low</td><td>Quick casual</td></tr>
+                  <tr class="row-hl"><td><span class="tag">HEVC</span></td><td>Apple Log</td><td>Small&ndash;med</td><td class="flex-high">High</td><td>Social & web (recommended)</td></tr>
+                  <tr><td><span class="tag tag--pro">ProRes</span></td><td>Apple Log</td><td>~6 GB/min</td><td class="flex-max">Maximum</td><td>Cinema, festivals</td></tr>
+                  <tr><td><span class="tag tag--pro">ProRes</span></td><td>HDR</td><td>Huge</td><td class="flex-med">Medium</td><td>HQ without grading</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Recommended Format (was Section 2) -->
+          <div class="divider"></div>
+          <div class="ch-header">
+            <span class="ch-index">02</span>
+            <h2 class="ch-title">Recommended <em>Recording Format</em></h2>
+          </div>
+
+          <div class="rec-box anim-card">
+            <div class="rec-badge">The Sweet Spot</div>
+            <h3 class="rec-title">HEVC + Apple Log</h3>
+            <p>For social media and website videos</p>
+          </div>
+
+          <div class="reasons">
+            <div class="reason anim-card"><span>01</span><p>Platforms recompress on upload. HEVC Log vs ProRes Log difference is zero after compression.</p></div>
+            <div class="reason anim-card"><span>02</span><p>10&ndash;15x smaller files than ProRes. Storage lasts much longer.</p></div>
+            <div class="reason anim-card"><span>03</span><p>Editing in VN/CapCut stays fast &mdash; files aren't massive.</p></div>
+            <div class="reason anim-card"><span>04</span><p>Full flat Log image with complete grading flexibility.</p></div>
+            <div class="reason anim-card"><span>05</span><p>No external SSD required. Blackmagic Camera's biggest advantage over native app.</p></div>
+          </div>
+
+          <div class="callout anim-card">
+            <h4>When to consider ProRes</h4>
+            <ul><li>Film festival or broadcast delivery</li><li>Desktop editing (DaVinci Resolve)</li><li>Heavy compositing or VFX</li><li>Large displays where every pixel matters</li></ul>
+          </div>
+
+          <div class="next-hint"><span>Next: Camera Settings</span><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- CHAPTER 2: CAMERA                          -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div class="chapter-panel" data-index="2" data-name="Camera">
+      <div class="chapter-bg">
+        <div class="blob blob--1"></div>
+        <div class="blob blob--2"></div>
+      </div>
+      <div class="chapter-scroll">
+        <div class="chapter-inner">
+          <div class="ch-header">
+            <span class="ch-index">03</span>
+            <h2 class="ch-title">Blackmagic Camera <em>Settings Explained</em></h2>
+          </div>
+
+          <!-- FPS -->
+          <h3 class="sub-title anim-card">Frame Rate (FPS)</h3>
+          <p class="sub-desc anim-card">How many images the camera captures per second.</p>
+          <div class="fps-grid">
+            <div class="fps-card fps-card--active anim-card"><span class="fps-val">24</span><span class="fps-lbl">fps</span><p>Cinema standard. Motion blur. "Movie" feel.</p><span class="fps-tag">Your Default</span></div>
+            <div class="fps-card anim-card"><span class="fps-val">25</span><span class="fps-lbl">fps</span><p>European broadcast (PAL).</p></div>
+            <div class="fps-card anim-card"><span class="fps-val">30</span><span class="fps-lbl">fps</span><p>Smoother. News, vlogs, talking-head.</p></div>
+            <div class="fps-card anim-card"><span class="fps-val">60</span><span class="fps-lbl">fps</span><p>Slow motion at 24 fps playback.</p><span class="fps-tag fps-tag--alt">Slow-Mo</span></div>
+          </div>
+
+          <!-- Shutter Speed -->
+          <h3 class="sub-title anim-card">Shutter Speed</h3>
+          <div class="rule-box anim-card">
+            <span class="rule-lbl">180&deg; Shutter Rule</span>
+            <p>Double your frame rate: 24fps &rarr; 1/50 &nbsp;|&nbsp; 30fps &rarr; 1/60 &nbsp;|&nbsp; 60fps &rarr; 1/120</p>
+          </div>
+          <div class="note-list anim-card">
+            <p><strong>Too fast</strong> (1/500 at 24fps) = Jittery, staccato. A creative choice, not default.</p>
+            <p><strong>Too slow</strong> = Excessive blur and smearing.</p>
+            <p><strong>On tripod</strong>, shutter still controls exposure (brightness).</p>
+          </div>
+
+          <!-- ISO -->
+          <h3 class="sub-title anim-card">ISO</h3>
+          <p class="sub-desc anim-card">Sensor sensitivity. Volume knob for brightness.</p>
+          <div class="iso-grid">
+            <div class="iso-card anim-card" data-quality="best"><span class="iso-range">50&ndash;100</span><div class="iso-bar" style="--w:100%"></div><span>Cleanest &mdash; bright daylight</span></div>
+            <div class="iso-card anim-card" data-quality="good"><span class="iso-range">200&ndash;400</span><div class="iso-bar" style="--w:75%"></div><span>Very clean &mdash; overcast, shade</span></div>
+            <div class="iso-card anim-card" data-quality="ok"><span class="iso-range">400&ndash;800</span><div class="iso-bar" style="--w:45%"></div><span>Slight grain &mdash; dim interiors</span></div>
+            <div class="iso-card anim-card" data-quality="avoid"><span class="iso-range">1600+</span><div class="iso-bar" style="--w:20%"></div><span>Noisy &mdash; avoid, add light</span></div>
+          </div>
+          <div class="golden-rule anim-card">Lowest ISO possible. Use lighting and shutter speed before raising ISO.</div>
+
+          <!-- White Balance -->
+          <h3 class="sub-title anim-card">White Balance (Kelvin)</h3>
+          <div class="kelvin-row">
+            <div class="kv anim-card" style="--kc:#ff9329"><span>2700K</span><small>Candle</small></div>
+            <div class="kv anim-card" style="--kc:#ffaa44"><span>3200K</span><small>Tungsten</small></div>
+            <div class="kv anim-card" style="--kc:#ffc875"><span>4000K</span><small>Fluoro</small></div>
+            <div class="kv anim-card" style="--kc:#ffeedd"><span>5000K</span><small>Midday</small></div>
+            <div class="kv anim-card" style="--kc:#fff5ee"><span>5600K</span><small>Daylight</small></div>
+            <div class="kv anim-card" style="--kc:#dde8f5"><span>6500K</span><small>Overcast</small></div>
+            <div class="kv anim-card" style="--kc:#b8ccee"><span>7500K+</span><small>Shade</small></div>
+          </div>
+          <div class="critical-box anim-card"><span class="crit-lbl">Critical</span><p>Always lock white balance manually. Auto WB shifts mid-shot &mdash; colors drift between clips. Set once per scene.</p></div>
+
+          <!-- Focus & Exposure -->
+          <h3 class="sub-title anim-card">Focus & Exposure</h3>
+          <div class="tools-row">
+            <div class="tool-card anim-card"><h4>Manual Focus</h4><p>Lock focus on subject. Turn on <strong>Focus Peaking</strong> &mdash; highlights in-focus edges.</p></div>
+            <div class="tool-card anim-card"><h4>Zebras</h4><p>Stripes on overexposed areas. If sky shows zebras, darken exposure.</p></div>
+            <div class="tool-card anim-card"><h4>LUT Preview</h4><p>Live preview overlay. Recording stays flat &mdash; LUT is display-only. Essential for judging exposure.</p></div>
+          </div>
+          <div class="golden-rule anim-card">Expose for highlights. Easier to brighten shadows than recover blown highlights.</div>
+
+          <!-- Shooting Checklist -->
+          <div class="divider"></div>
+          <div class="ch-header">
+            <span class="ch-index">04</span>
+            <h2 class="ch-title">Shooting <em>Checklist</em></h2>
+            <p class="ch-intro">Tripod / static shots &mdash; before every shot:</p>
+          </div>
+          <div class="checklist">
+            <div class="ck anim-card"><span>01</span><div><strong>Frame Rate</strong> &mdash; 24 fps (60 for slow-mo)</div></div>
+            <div class="ck anim-card"><span>02</span><div><strong>Resolution</strong> &mdash; 4K</div></div>
+            <div class="ck anim-card"><span>03</span><div><strong>Codec</strong> &mdash; HEVC (H.265)</div></div>
+            <div class="ck anim-card"><span>04</span><div><strong>Color Profile</strong> &mdash; Apple Log</div></div>
+            <div class="ck anim-card"><span>05</span><div><strong>White Balance</strong> &mdash; Manual Kelvin</div></div>
+            <div class="ck anim-card"><span>06</span><div><strong>Focus</strong> &mdash; Manual, tap subject, peaking</div></div>
+            <div class="ck anim-card"><span>07</span><div><strong>ISO</strong> &mdash; As low as possible</div></div>
+            <div class="ck anim-card"><span>08</span><div><strong>Shutter</strong> &mdash; 1/50 for 24 fps</div></div>
+            <div class="ck anim-card"><span>09</span><div><strong>Zebras</strong> &mdash; Check highlights</div></div>
+            <div class="ck anim-card"><span>10</span><div><strong>LUT Preview</strong> &mdash; Enable</div></div>
+            <div class="ck ck--rec anim-card"><span>11</span><div><strong>Record</strong> &mdash; Hold 5+ seconds, let it breathe</div></div>
+          </div>
+
+          <div class="next-hint"><span>Next: Visual Craft</span><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- CHAPTER 3: VISUAL CRAFT                    -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div class="chapter-panel" data-index="3" data-name="Visual Craft">
+      <div class="chapter-bg">
+        <div class="blob blob--1"></div>
+        <div class="blob blob--2"></div>
+      </div>
+      <div class="chapter-scroll">
+        <div class="chapter-inner">
+          <div class="ch-header">
+            <span class="ch-index">05</span>
+            <h2 class="ch-title">Composition & <em>Framing</em></h2>
+          </div>
+
+          <div class="comp-grid">
+            <div class="comp-card anim-card"><h4>Rule of Thirds</h4><p>Grid overlay on. Place subject on intersection points &mdash; not dead center.</p></div>
+            <div class="comp-card anim-card"><h4>Leading Lines</h4><p>Roads, fences, rivers &mdash; guide the viewer's eye toward your subject.</p></div>
+            <div class="comp-card anim-card"><h4>Foreground Depth</h4><p>Shoot through doorways, branches, arches. Layers create 3D feel.</p></div>
+            <div class="comp-card anim-card"><h4>Symmetry</h4><p>Center framing creates tension. Great for architecture, tunnels.</p></div>
+            <div class="comp-card anim-card"><h4>Negative Space</h4><p>Empty space around subject = scale, isolation, calm.</p></div>
+            <div class="comp-card anim-card"><h4>Vary Your Shots</h4><p>Wide, medium, close-up, detail, high angle, low angle. Edit needs options.</p></div>
+          </div>
+
+          <div class="divider"></div>
+          <div class="ch-header">
+            <span class="ch-index">06</span>
+            <h2 class="ch-title">Lighting <em>Tips</em></h2>
+          </div>
+
+          <div class="light-grid">
+            <div class="light-card light-card--golden anim-card"><h4>Golden Hour</h4><p>#1 factor in cinematic footage. First hour after sunrise, last before sunset. Warm, soft, directional.</p></div>
+            <div class="light-card light-card--blue anim-card"><h4>Blue Hour</h4><p>20&ndash;30 min before sunrise / after sunset. Cool, moody, even. Beautiful for cityscapes.</p></div>
+            <div class="light-card light-card--back anim-card"><h4>Backlighting</h4><p>Light behind subject = rim light + separation from background.</p></div>
+            <div class="light-card light-card--soft anim-card"><h4>Overcast = Soft Light</h4><p>Natural softbox. Smooth skin, gentle shadows, even colors.</p></div>
+          </div>
+
+          <div class="avoid-box anim-card"><h4>Avoid Harsh Midday Sun</h4><p>Hard shadows, squinting, blown highlights. Find shade or wait for clouds.</p></div>
+          <div class="golden-rule anim-card">Expose for highlights. Shadows recoverable. Blown highlights are not.</div>
+
+          <div class="next-hint"><span>Next: Post-Production</span><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- CHAPTER 4: POST-PRODUCTION                 -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div class="chapter-panel" data-index="4" data-name="Post-Production">
+      <div class="chapter-bg">
+        <div class="blob blob--1"></div>
+        <div class="blob blob--2"></div>
+      </div>
+      <div class="chapter-scroll">
+        <div class="chapter-inner">
+          <div class="ch-header">
+            <span class="ch-index">07</span>
+            <h2 class="ch-title">App Stack <em>Shoot, Edit, Grade</em></h2>
+          </div>
+
+          <div class="app-section">
+            <span class="app-label">Shooting</span>
+            <div class="app-row">
+              <div class="app-card app-card--primary anim-card"><h4>Blackmagic Camera</h4><span class="app-price">Free</span><p>Manual controls, Apple Log in HEVC, LUT preview, focus peaking</p></div>
+              <div class="app-card anim-card"><h4>Native Camera</h4><span class="app-price">Built-in</span><p>Quick shots, Cinematic Mode, timelapse, slo-mo</p></div>
+            </div>
+          </div>
+          <div class="app-section">
+            <span class="app-label">Editing</span>
+            <div class="app-row">
+              <div class="app-card app-card--primary anim-card"><h4>VN Video Editor</h4><span class="app-price">Free, no watermark</span><p>Multi-track, speed ramps, keyframes, 4K, .cube LUT import</p><span class="app-tag app-tag--yes">LUT Support</span></div>
+              <div class="app-card anim-card"><h4>CapCut</h4><span class="app-price">Free</span><p>Fast social edits, templates, auto captions</p><span class="app-tag app-tag--no">No LUT Import</span></div>
+            </div>
+          </div>
+
+          <div class="wf-box anim-card">
+            <h3>Recommended Workflow</h3>
+            <div class="wf-path"><h4>Graded Cinematic</h4><div class="wf-flow"><span>Grade + LUTs in VN</span><span class="wf-a">&rarr;</span><span>Export clip</span><span class="wf-a">&rarr;</span><span>CapCut final touches</span></div></div>
+            <div class="wf-path"><h4>Quick Social</h4><div class="wf-flow"><span>Edit in CapCut</span><span class="wf-a">&rarr;</span><span>Built-in filters</span><span class="wf-a">&rarr;</span><span>Export</span></div></div>
+          </div>
+
+          <!-- LUTs -->
+          <div class="divider"></div>
+          <div class="ch-header">
+            <span class="ch-index">08</span>
+            <h2 class="ch-title">LUTs <em>What & How</em></h2>
+            <p class="ch-intro">A LUT (.cube file) remaps every color in your footage to a new value.</p>
+          </div>
+
+          <div class="lut-types">
+            <div class="lut-type anim-card"><div class="lt-badge lt-badge--tech">Technical</div><h4>Conversion LUT</h4><p>Log &rarr; Rec.709. Normalizes flat footage. Like developing a film negative.</p></div>
+            <div class="lut-type anim-card"><div class="lt-badge lt-badge--creative">Creative</div><h4>Creative LUT</h4><p>Applied after conversion. Gives mood &mdash; warm cinematic, teal & orange, vintage.</p></div>
+          </div>
+
+          <h3 class="sub-title anim-card">Where to Get LUTs</h3>
+          <div class="lut-sources">
+            <div class="lut-src anim-card"><h4>Phantom LUTs</h4><span>~$30&ndash;50</span><p>Calibrated against ARRI Alexa. DJI D-Log matching.</p></div>
+            <div class="lut-src anim-card"><h4>FilterGrade</h4><span>Free</span><p>8 free .cube files, works in VN + LumaFusion.</p></div>
+            <div class="lut-src anim-card"><h4>IWLTBAP</h4><span>~$40</span><p>325+ cinematic LUTs, all platforms.</p></div>
+            <div class="lut-src anim-card"><h4>LUT Studio</h4><span>Free/Sub</span><p>90+ built-in, Apple Log support.</p></div>
+          </div>
+
+          <h3 class="sub-title anim-card">Best Practices</h3>
+          <div class="practices">
+            <div class="prac anim-card">Color correct FIRST (white balance, exposure) before creative LUT</div>
+            <div class="prac anim-card">Conversion LUT first, creative LUT on top</div>
+            <div class="prac anim-card">Never 100% intensity &mdash; dial back for natural look</div>
+            <div class="prac anim-card">Same LUT across all clips for consistency</div>
+          </div>
+
+          <!-- Color Grading -->
+          <div class="divider"></div>
+          <div class="ch-header">
+            <span class="ch-index">09</span>
+            <h2 class="ch-title">Color Grading <em>Workflow</em></h2>
+          </div>
+
+          <div class="grade-cols">
+            <div class="grade-col anim-card">
+              <h3>VN Video Editor</h3><p class="grade-sub">Full LUT workflow</p>
+              <div class="grade-steps">
+                <div class="gs"><span>1</span><div><strong>Import</strong> Apple Log footage</div></div>
+                <div class="gs"><span>2</span><div><strong>Color Correct</strong> &mdash; WB, exposure, contrast</div></div>
+                <div class="gs"><span>3</span><div><strong>Conversion LUT</strong> at 70&ndash;80%</div></div>
+                <div class="gs"><span>4</span><div><strong>Creative LUT</strong> at 50&ndash;70%</div></div>
+                <div class="gs"><span>5</span><div><strong>Fine-Tune</strong> highlights, shadows, saturation</div></div>
+                <div class="gs"><span>6</span><div><strong>Match Clips</strong> copy-paste grades</div></div>
+              </div>
+            </div>
+            <div class="grade-col anim-card">
+              <h3>CapCut</h3><p class="grade-sub">Without LUT support</p>
+              <div class="grade-steps">
+                <div class="gs"><span>1</span><div><strong>Adjust</strong> brightness, contrast, highlights, shadows</div></div>
+                <div class="gs"><span>2</span><div><strong>HSL</strong> desaturate greens/blues, warm oranges</div></div>
+                <div class="gs"><span>3</span><div><strong>Filters</strong> film-style at reduced intensity</div></div>
+                <div class="gs"><span>4</span><div><strong>Sharpen</strong> small amount</div></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="teal-orange anim-card">
+            <h3>"Teal and Orange" Look</h3>
+            <p class="to-sub">Most popular cinematic palette. Warm skins vs cool backgrounds.</p>
+            <div class="to-steps">
+              <span>Shadows &rarr; teal/blue</span>
+              <span>Highlights &rarr; orange/warm</span>
+              <span>Desaturate &minus;10 to &minus;20%</span>
+              <span>Add contrast</span>
+              <span>Lower highlights, lift shadows</span>
+            </div>
+          </div>
+
+          <div class="next-hint"><span>Next: Assets</span><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- CHAPTER 5: ASSETS                          -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div class="chapter-panel" data-index="5" data-name="Assets">
+      <div class="chapter-bg">
+        <div class="blob blob--1"></div>
+        <div class="blob blob--2"></div>
+      </div>
+      <div class="chapter-scroll">
+        <div class="chapter-inner">
+          <div class="ch-header">
+            <span class="ch-index">10</span>
+            <h2 class="ch-title">Music <em>Sources</em></h2>
+          </div>
+
+          <div class="music-cols">
+            <div class="music-col anim-card">
+              <h3>Free</h3>
+              <div class="m-card"><h4>YouTube Audio Library</h4><small>Free, most no attribution</small><p>Best free option. Search by mood, genre.</p></div>
+              <div class="m-card"><h4>Bensound</h4><small>Free w/ attribution</small><p>Good cinematic and ambient.</p></div>
+              <div class="m-card"><h4>Pixabay Music</h4><small>Free, no attribution</small><p>Growing library, decent quality.</p></div>
+            </div>
+            <div class="music-col anim-card">
+              <h3>Paid</h3>
+              <div class="m-card m-card--paid"><h4>Epidemic Sound</h4><small>~$10/mo</small><p>50K+ tracks, no Content ID.</p></div>
+              <div class="m-card m-card--paid"><h4>Artlist</h4><small>~$10&ndash;17/mo</small><p>Perpetual license, curated cinematic.</p></div>
+              <div class="m-card m-card--paid"><h4>Soundstripe</h4><small>~$12/mo</small><p>AI search, Adobe plugin.</p></div>
+            </div>
+          </div>
+
+          <div class="practices">
+            <div class="prac anim-card">Choose music before editing &mdash; let the track set the pace</div>
+            <div class="prac anim-card">Cut to the beat &mdash; transitions on musical hits</div>
+            <div class="prac anim-card">Less is more &mdash; ambient > busy tracks for cinematic</div>
+          </div>
+
+          <!-- Storage -->
+          <div class="divider"></div>
+          <div class="ch-header">
+            <span class="ch-index">11</span>
+            <h2 class="ch-title">External <em>Storage</em></h2>
+            <p class="ch-intro">No memory card slot. USB-C SSD for ProRes or large projects.</p>
+          </div>
+
+          <div class="ssd-grid">
+            <div class="ssd-card anim-card"><h4>Planck SSD</h4><small>512GB&ndash;2TB</small><p>10g, direct USB-C, no cables</p><span>~$80&ndash;180</span></div>
+            <div class="ssd-card anim-card"><h4>SanDisk Creator</h4><small>1&ndash;4TB</small><p>MagSafe, compact, reliable</p><span>~$100&ndash;250</span></div>
+            <div class="ssd-card anim-card"><h4>Lexar ES5</h4><small>1&ndash;2TB</small><p>IP65, MagSafe, 3m drop-proof</p><span>~$100&ndash;200</span></div>
+            <div class="ssd-card anim-card"><h4>TWOPAN Magnetic</h4><small>512GB&ndash;2TB</small><p>MagSafe, cooling fan, LCD</p><span>~$90&ndash;285</span></div>
+          </div>
+
+          <div class="callout anim-card">
+            <h4>Do you need one?</h4>
+            <p>For HEVC + Apple Log: <strong>not necessarily.</strong> Internal storage handles HEVC fine. You need SSD for ProRes, all-day shoots, or ProRes RAW.</p>
+          </div>
+
+          <!-- Export Settings -->
+          <div class="divider"></div>
+          <div class="ch-header">
+            <span class="ch-index">12</span>
+            <h2 class="ch-title">Export <em>Settings</em></h2>
+          </div>
+
+          <div class="export-grid">
+            <div class="export-card anim-card"><h4>IG Reels</h4><span>1080&times;1920</span><span>30fps &middot; 9:16</span></div>
+            <div class="export-card anim-card"><h4>TikTok</h4><span>1080&times;1920</span><span>30fps &middot; 9:16</span></div>
+            <div class="export-card anim-card"><h4>YouTube</h4><span>3840&times;2160</span><span>24fps &middot; 16:9</span></div>
+            <div class="export-card anim-card"><h4>YT Shorts</h4><span>1080&times;1920</span><span>30fps &middot; 9:16</span></div>
+            <div class="export-card anim-card"><h4>IG Feed</h4><span>1080&times;1350</span><span>30fps &middot; 4:5</span></div>
+          </div>
+
+          <div class="web-export anim-card">
+            <h3>Website Background Video</h3>
+            <div class="we-specs">
+              <div><small>Resolution</small><span>1920&times;1080</span></div>
+              <div><small>Codec</small><span>H.264</span></div>
+              <div><small>Bitrate</small><span>8&ndash;15 Mbps</span></div>
+              <div><small>FPS</small><span>24</span></div>
+              <div><small>Format</small><span>.mp4</span></div>
+              <div><small>Loop</small><span>5&ndash;15s</span></div>
+            </div>
+          </div>
+
+          <div class="practices">
+            <div class="prac anim-card">Export highest quality &mdash; let platform compress</div>
+            <div class="prac anim-card">Upload 4K to YouTube even for 1080p edits &mdash; higher bitrate allocation</div>
+            <div class="prac anim-card">Disable HDR unless platform supports it</div>
+          </div>
+
+          <div class="next-hint"><span>Next: Field Guide</span><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- CHAPTER 6: FIELD GUIDE                     -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div class="chapter-panel" data-index="6" data-name="Field Guide">
+      <div class="chapter-bg">
+        <div class="blob blob--1"></div>
+        <div class="blob blob--2"></div>
+      </div>
+      <div class="chapter-scroll">
+        <div class="chapter-inner">
+          <div class="ch-header">
+            <span class="ch-index">13</span>
+            <h2 class="ch-title">Scenario <em>Quick-Reference</em></h2>
+            <p class="ch-intro">Ready-to-use settings for common shooting situations.</p>
+          </div>
+
+          <div class="scenario-grid">
+            <div class="sc-card sc-card--golden anim-card">
+              <div class="sc-emoji">&#127749;</div><h3>Golden Hour Landscape</h3>
+              <div class="sc-rows">
+                <div><span>FPS</span><span>24</span></div><div><span>Codec</span><span>HEVC</span></div>
+                <div><span>Profile</span><span>Apple Log</span></div><div><span>WB</span><span>5000&ndash;5600K</span></div>
+                <div><span>ISO</span><span>50&ndash;100</span></div><div><span>Shutter</span><span>1/50</span></div>
+              </div>
+              <p class="sc-tip">Expose for the sky. Lift shadows in post.</p>
+            </div>
+            <div class="sc-card sc-card--night anim-card">
+              <div class="sc-emoji">&#127747;</div><h3>City Night</h3>
+              <div class="sc-rows">
+                <div><span>FPS</span><span>24</span></div><div><span>Codec</span><span>HEVC</span></div>
+                <div><span>Profile</span><span>Apple Log</span></div><div><span>WB</span><span>3200&ndash;4000K</span></div>
+                <div><span>ISO</span><span>400&ndash;800</span></div><div><span>Shutter</span><span>1/50 or slower</span></div>
+              </div>
+              <p class="sc-tip">Embrace grain. Longer shutter = light trails.</p>
+            </div>
+            <div class="sc-card sc-card--jungle anim-card">
+              <div class="sc-emoji">&#127807;</div><h3>Jungle / Forest</h3>
+              <div class="sc-rows">
+                <div><span>FPS</span><span>24</span></div><div><span>Codec</span><span>HEVC</span></div>
+                <div><span>Profile</span><span>Apple Log</span></div><div><span>WB</span><span>5600&ndash;6500K</span></div>
+                <div><span>ISO</span><span>200&ndash;400</span></div><div><span>Shutter</span><span>1/50</span></div>
+              </div>
+              <p class="sc-tip">Look for light shafts through trees.</p>
+            </div>
+            <div class="sc-card sc-card--cafe anim-card">
+              <div class="sc-emoji">&#9749;</div><h3>Indoor / Cafe</h3>
+              <div class="sc-rows">
+                <div><span>FPS</span><span>24</span></div><div><span>Codec</span><span>HEVC</span></div>
+                <div><span>Profile</span><span>Apple Log</span></div><div><span>WB</span><span>3200&ndash;4000K</span></div>
+                <div><span>ISO</span><span>200&ndash;800</span></div><div><span>Shutter</span><span>1/50</span></div>
+              </div>
+              <p class="sc-tip">Position near window for soft directional light.</p>
+            </div>
+            <div class="sc-card sc-card--drone anim-card">
+              <div class="sc-emoji">&#127910;</div><h3>Drone + iPhone</h3>
+              <div class="sc-rows">
+                <div><span>iPhone</span><span>HEVC Log 4K 24fps</span></div>
+                <div><span>Drone</span><span>D-Log 4K 24fps</span></div>
+                <div><span>Match</span><span>Phantom LUTs</span></div>
+              </div>
+              <p class="sc-tip">Alternate drone wides with iPhone close-ups.</p>
+            </div>
+            <div class="sc-card sc-card--slomo anim-card">
+              <div class="sc-emoji">&#127916;</div><h3>Slow Motion</h3>
+              <div class="sc-rows">
+                <div><span>FPS</span><span>60</span></div><div><span>Shutter</span><span>1/120</span></div>
+                <div><span>Playback</span><span>40% on 24fps</span></div>
+              </div>
+              <p class="sc-tip">Water, pouring drinks, walking, fabric, nature.</p>
+            </div>
+          </div>
+
+          <div class="next-hint"><span>Next: Final Reminders</span><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- CHAPTER 7: REMINDERS                       -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div class="chapter-panel" data-index="7" data-name="Reminders">
+      <div class="chapter-bg">
+        <div class="blob blob--1"></div>
+        <div class="blob blob--2"></div>
+      </div>
+      <div class="chapter-scroll">
+        <div class="chapter-inner">
+          <div class="ch-header">
+            <span class="ch-index">14</span>
+            <h2 class="ch-title">Quick <em>Reminders</em></h2>
+          </div>
+
+          <div class="reminders-grid">
+            <div class="rem anim-card"><span>01</span><p><strong>Apple Log looks ugly on purpose.</strong> That flat grey image holds all the detail. Trust the process.</p></div>
+            <div class="rem anim-card"><span>02</span><p><strong>Lock white balance and focus.</strong> Every time. No exceptions.</p></div>
+            <div class="rem anim-card"><span>03</span><p><strong>Expose for highlights.</strong> Shadows recoverable. Blown highlights are not.</p></div>
+            <div class="rem anim-card"><span>04</span><p><strong>ISO as low as possible.</strong> Add light before adding ISO.</p></div>
+            <div class="rem anim-card"><span>05</span><p><strong>Hold shots 5+ extra seconds.</strong> You'll thank yourself in the edit.</p></div>
+            <div class="rem anim-card"><span>06</span><p><strong>Shoot variety.</strong> Wide, medium, close-up, detail. The edit needs options.</p></div>
+            <div class="rem anim-card"><span>07</span><p><strong>Grade before LUTs.</strong> Fix basics first.</p></div>
+            <div class="rem anim-card"><span>08</span><p><strong>LUTs at 60&ndash;80%.</strong> Full strength looks overdone.</p></div>
+            <div class="rem anim-card"><span>09</span><p><strong>Music first, edit second.</strong> Let the track guide pacing.</p></div>
+            <div class="rem anim-card"><span>10</span><p><strong>HEVC + Apple Log.</strong> ProRes is overkill for social and web.</p></div>
+          </div>
+
+          <footer class="site-footer">
+            <span>iPhone 17 Pro &mdash; Cinematic Video Guide</span>
+            <span>February 2026</span>
+          </footer>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /chapters-wrapper -->
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
