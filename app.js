@@ -95,7 +95,6 @@
 
     const oldPanel = panels[current];
     const newPanel = panels[index];
-    const direction = index > current ? 1 : -1;
 
     // Reset new panel scroll to top
     const newScroll = newPanel.querySelector('.chapter-scroll');
@@ -105,7 +104,6 @@
       onComplete: () => {
         current = index;
         isTransitioning = false;
-        // Reset old panel transforms
         gsap.set(oldPanel, { scale: 1, opacity: 1, filter: 'none' });
         animateChapterIn(index);
       }
@@ -153,47 +151,45 @@
   // ─── Content Animations on Chapter Enter ───
   function animateChapterIn(index) {
     const panel = panels[index];
-    const cards = panel.querySelectorAll('.anim-card');
+    const items = panel.querySelectorAll('.ac');
 
-    if (cards.length === 0) return;
+    if (items.length === 0) return;
 
-    gsap.fromTo(cards, {
+    gsap.fromTo(items, {
       opacity: 0,
-      y: 50,
-      rotateX: -10,
-      scale: 0.95,
+      y: 30,
+      scale: 0.97,
     }, {
       opacity: 1,
       y: 0,
-      rotateX: 0,
       scale: 1,
-      duration: 0.7,
-      stagger: 0.06,
+      duration: 0.6,
+      stagger: 0.05,
       ease: 'power3.out',
       overwrite: 'auto',
     });
 
-    // Animate chapter index counter
     const chIndex = panel.querySelector('.ch-index');
     if (chIndex) {
-      const target = parseInt(chIndex.textContent);
-      if (!isNaN(target)) {
-        gsap.fromTo(chIndex, {
-          opacity: 0,
-          scale: 0.7,
-          y: 30,
-        }, {
-          opacity: 1,
-          scale: 1,
-          y: 0,
-          duration: 0.8,
-          ease: 'elastic.out(1, 0.5)',
-        });
-      }
+      gsap.fromTo(chIndex, {
+        opacity: 0,
+        scale: 0.7,
+        y: 30,
+      }, {
+        opacity: 1,
+        scale: 1,
+        y: 0,
+        duration: 0.8,
+        ease: 'elastic.out(1, 0.5)',
+      });
     }
   }
 
   // ─── Wheel / Scroll Detection ───
+  let wheelAccum = 0;
+  let wheelTimeout = null;
+  const WHEEL_THRESHOLD = 80;
+
   function handleWheel(e) {
     if (isTransitioning) {
       e.preventDefault();
@@ -219,14 +215,28 @@
                      scroll.scrollTop + scroll.clientHeight >= scroll.scrollHeight - 8;
     const atTop = scroll.scrollTop <= 8;
 
+    // Only switch chapters when at scroll boundaries
     if (e.deltaY > 0 && atBottom && current < TOTAL - 1) {
       e.preventDefault();
-      goToChapter(current + 1);
+      wheelAccum += Math.abs(e.deltaY);
+      clearTimeout(wheelTimeout);
+      wheelTimeout = setTimeout(() => { wheelAccum = 0; }, 200);
+      if (wheelAccum >= WHEEL_THRESHOLD) {
+        wheelAccum = 0;
+        goToChapter(current + 1);
+      }
     } else if (e.deltaY < 0 && atTop && current > 0) {
       e.preventDefault();
-      goToChapter(current - 1);
+      wheelAccum += Math.abs(e.deltaY);
+      clearTimeout(wheelTimeout);
+      wheelTimeout = setTimeout(() => { wheelAccum = 0; }, 200);
+      if (wheelAccum >= WHEEL_THRESHOLD) {
+        wheelAccum = 0;
+        goToChapter(current - 1);
+      }
+    } else {
+      wheelAccum = 0;
     }
-    // else: let it scroll naturally within the chapter
   }
 
   document.addEventListener('wheel', handleWheel, { passive: false });
@@ -242,39 +252,60 @@
     }
   });
 
-  // ─── Touch / Swipe Support ───
+  // ─── Touch / Swipe Support (iPhone optimized) ───
   let touchStartX = 0;
   let touchStartY = 0;
   let touchStartTime = 0;
+  let touchStartScrollTop = 0;
+  let isSwiping = false;
 
-  document.addEventListener('touchstart', (e) => {
+  wrapper.addEventListener('touchstart', (e) => {
     touchStartX = e.touches[0].clientX;
     touchStartY = e.touches[0].clientY;
     touchStartTime = Date.now();
+    isSwiping = false;
+
+    const scroll = panels[current].querySelector('.chapter-scroll');
+    touchStartScrollTop = scroll ? scroll.scrollTop : 0;
   }, { passive: true });
 
-  document.addEventListener('touchend', (e) => {
+  wrapper.addEventListener('touchmove', (e) => {
+    if (isTransitioning) return;
+
+    const dx = e.touches[0].clientX - touchStartX;
+    const dy = e.touches[0].clientY - touchStartY;
+
+    // Detect horizontal swipe intent early
+    if (!isSwiping && Math.abs(dx) > 10 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+      isSwiping = true;
+    }
+  }, { passive: true });
+
+  wrapper.addEventListener('touchend', (e) => {
+    if (isTransitioning) return;
+
     const dx = e.changedTouches[0].clientX - touchStartX;
     const dy = e.changedTouches[0].clientY - touchStartY;
     const dt = Date.now() - touchStartTime;
 
-    // Horizontal swipe detection
-    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 60 && dt < 500) {
+    // Horizontal swipe — primary chapter navigation on touch
+    if (Math.abs(dx) > Math.abs(dy) * 1.2 && Math.abs(dx) > 50 && dt < 600) {
       if (dx < 0) goToChapter(current + 1);
       else goToChapter(current - 1);
+      return;
     }
 
-    // Vertical swipe at boundaries
+    // Vertical swipe at scroll boundaries — secondary navigation
     const scroll = panels[current].querySelector('.chapter-scroll');
-    if (scroll && Math.abs(dy) > Math.abs(dx) && Math.abs(dy) > 80 && dt < 500) {
-      const atBottom = scroll.scrollTop + scroll.clientHeight >= scroll.scrollHeight - 8;
-      const atTop = scroll.scrollTop <= 8;
+    if (scroll && Math.abs(dy) > Math.abs(dx) * 1.5 && Math.abs(dy) > 100 && dt < 500) {
+      const atBottom = scroll.scrollTop + scroll.clientHeight >= scroll.scrollHeight - 12;
+      const atTop = scroll.scrollTop <= 12;
       if (dy < 0 && atBottom) goToChapter(current + 1);
       else if (dy > 0 && atTop) goToChapter(current - 1);
     }
   }, { passive: true });
 
-  // ─── Dot Click Navigation ───
+  // ─── Dot Click / Tap Navigation ───
   dots.forEach(dot => {
     dot.addEventListener('click', () => {
       const index = parseInt(dot.dataset.index);
@@ -290,8 +321,5 @@
   // ─── Initial State ───
   gsap.set(wrapper, { x: 0 });
   updateNav(0);
-
-  // Animate first chapter content (non-hero) cards are hidden by default
-  // Hero is animated by animateHero(), other chapters wait for navigation
 
 })();
