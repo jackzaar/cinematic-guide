@@ -93,45 +93,21 @@
     isTransitioning = true;
     lastTransitionTime = Date.now();
 
-    const oldPanel = panels[current];
-    const newPanel = panels[index];
-
     // Reset new panel scroll to top
-    const newScroll = newPanel.querySelector('.chapter-scroll');
+    const newScroll = panels[index].querySelector('.chapter-scroll');
     if (newScroll) newScroll.scrollTop = 0;
 
-    const tl = gsap.timeline({
+    // Single transform slide — maximum GPU performance
+    gsap.to(wrapper, {
+      x: -index * window.innerWidth,
+      duration: 0.35,
+      ease: 'power2.out',
       onComplete: () => {
         current = index;
         isTransitioning = false;
-        gsap.set(oldPanel, { scale: 1, opacity: 1, filter: 'none' });
         animateChapterIn(index);
       }
     });
-
-    // Old panel exits
-    tl.to(oldPanel, {
-      scale: 0.92,
-      opacity: 0.3,
-      duration: 0.3,
-      ease: 'power2.out',
-    }, 0);
-
-    // Move wrapper
-    tl.to(wrapper, {
-      x: -index * window.innerWidth,
-      duration: 0.4,
-      ease: 'power2.inOut',
-    }, 0);
-
-    // New panel enters
-    gsap.set(newPanel, { scale: 1.03, opacity: 0.6 });
-    tl.to(newPanel, {
-      scale: 1,
-      opacity: 1,
-      duration: 0.3,
-      ease: 'power2.out',
-    }, 0.15);
 
     updateNav(index);
   }
@@ -154,28 +130,20 @@
 
     if (items.length === 0) return;
 
-    gsap.fromTo(items, {
-      opacity: 0,
-      y: 20,
-    }, {
+    gsap.fromTo(items, { opacity: 0 }, {
       opacity: 1,
-      y: 0,
-      duration: 0.3,
-      stagger: 0.02,
-      ease: 'power2.out',
+      duration: 0.25,
+      stagger: 0.015,
+      ease: 'none',
       overwrite: 'auto',
     });
 
     const chIndex = panel.querySelector('.ch-index');
     if (chIndex) {
-      gsap.fromTo(chIndex, {
-        opacity: 0,
-        y: 20,
-      }, {
+      gsap.fromTo(chIndex, { opacity: 0 }, {
         opacity: 1,
-        y: 0,
-        duration: 0.35,
-        ease: 'power2.out',
+        duration: 0.2,
+        ease: 'none',
       });
     }
   }
