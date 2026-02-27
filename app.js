@@ -17,7 +17,7 @@
   let current = 0;
   let isTransitioning = false;
   let lastTransitionTime = 0;
-  const COOLDOWN = 1000;
+  const COOLDOWN = 400;
 
   // ─── Preloader ───
   let loadProgress = 0;
@@ -111,28 +111,27 @@
 
     // Old panel exits
     tl.to(oldPanel, {
-      scale: 0.88,
+      scale: 0.92,
       opacity: 0.3,
-      filter: 'blur(6px)',
-      duration: 0.6,
-      ease: 'power3.inOut',
+      duration: 0.3,
+      ease: 'power2.out',
     }, 0);
 
     // Move wrapper
     tl.to(wrapper, {
       x: -index * window.innerWidth,
-      duration: 0.9,
-      ease: 'power3.inOut',
-    }, 0.05);
+      duration: 0.4,
+      ease: 'power2.inOut',
+    }, 0);
 
     // New panel enters
-    gsap.set(newPanel, { scale: 1.06, opacity: 0.6 });
+    gsap.set(newPanel, { scale: 1.03, opacity: 0.6 });
     tl.to(newPanel, {
       scale: 1,
       opacity: 1,
-      duration: 0.7,
-      ease: 'power3.out',
-    }, 0.35);
+      duration: 0.3,
+      ease: 'power2.out',
+    }, 0.15);
 
     updateNav(index);
   }
@@ -157,15 +156,13 @@
 
     gsap.fromTo(items, {
       opacity: 0,
-      y: 30,
-      scale: 0.97,
+      y: 20,
     }, {
       opacity: 1,
       y: 0,
-      scale: 1,
-      duration: 0.6,
-      stagger: 0.05,
-      ease: 'power3.out',
+      duration: 0.3,
+      stagger: 0.02,
+      ease: 'power2.out',
       overwrite: 'auto',
     });
 
@@ -173,14 +170,12 @@
     if (chIndex) {
       gsap.fromTo(chIndex, {
         opacity: 0,
-        scale: 0.7,
-        y: 30,
+        y: 20,
       }, {
         opacity: 1,
-        scale: 1,
         y: 0,
-        duration: 0.8,
-        ease: 'elastic.out(1, 0.5)',
+        duration: 0.35,
+        ease: 'power2.out',
       });
     }
   }
@@ -211,32 +206,8 @@
       return;
     }
 
-    const atBottom = scroll.scrollHeight <= scroll.clientHeight + 5 ||
-                     scroll.scrollTop + scroll.clientHeight >= scroll.scrollHeight - 8;
-    const atTop = scroll.scrollTop <= 8;
-
-    // Only switch chapters when at scroll boundaries
-    if (e.deltaY > 0 && atBottom && current < TOTAL - 1) {
-      e.preventDefault();
-      wheelAccum += Math.abs(e.deltaY);
-      clearTimeout(wheelTimeout);
-      wheelTimeout = setTimeout(() => { wheelAccum = 0; }, 200);
-      if (wheelAccum >= WHEEL_THRESHOLD) {
-        wheelAccum = 0;
-        goToChapter(current + 1);
-      }
-    } else if (e.deltaY < 0 && atTop && current > 0) {
-      e.preventDefault();
-      wheelAccum += Math.abs(e.deltaY);
-      clearTimeout(wheelTimeout);
-      wheelTimeout = setTimeout(() => { wheelAccum = 0; }, 200);
-      if (wheelAccum >= WHEEL_THRESHOLD) {
-        wheelAccum = 0;
-        goToChapter(current - 1);
-      }
-    } else {
-      wheelAccum = 0;
-    }
+    // Vertical scroll stays within the chapter — no page switching
+    // Chapter navigation is only via horizontal swipe, keyboard arrows, or dot clicks
   }
 
   document.addEventListener('wheel', handleWheel, { passive: false });
@@ -288,20 +259,10 @@
     const dy = e.changedTouches[0].clientY - touchStartY;
     const dt = Date.now() - touchStartTime;
 
-    // Horizontal swipe — primary chapter navigation on touch
+    // Horizontal swipe — only way to navigate between chapters on touch
     if (Math.abs(dx) > Math.abs(dy) * 1.2 && Math.abs(dx) > 50 && dt < 600) {
       if (dx < 0) goToChapter(current + 1);
       else goToChapter(current - 1);
-      return;
-    }
-
-    // Vertical swipe at scroll boundaries — secondary navigation
-    const scroll = panels[current].querySelector('.chapter-scroll');
-    if (scroll && Math.abs(dy) > Math.abs(dx) * 1.5 && Math.abs(dy) > 100 && dt < 500) {
-      const atBottom = scroll.scrollTop + scroll.clientHeight >= scroll.scrollHeight - 12;
-      const atTop = scroll.scrollTop <= 12;
-      if (dy < 0 && atBottom) goToChapter(current + 1);
-      else if (dy > 0 && atTop) goToChapter(current - 1);
     }
   }, { passive: true });
 

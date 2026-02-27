@@ -137,6 +137,7 @@ strong { font-weight: 600; }
   overscroll-behavior: contain;
   scrollbar-width: thin;
   scrollbar-color: var(--border-l) transparent;
+  transform: translateZ(0);
 }
 .chapter-scroll::-webkit-scrollbar { width: 3px; }
 .chapter-scroll::-webkit-scrollbar-track { background: transparent; }
@@ -448,4 +449,10 @@ td { color: var(--text-m); } tr:last-child td { border-bottom: none; }
   .kelvin-row { gap: 0.3rem; }
   .kv { min-width: 60px; flex: 1 1 60px; padding: 0.5rem 0.3rem; }
   .site-footer { flex-direction: column; gap: 0.25rem; }
+
+  /* Reduce animation overhead for snappier scrolling on mobile */
+  .chapter-grain { animation: none; opacity: 0.4; }
+  .blob { animation: none; }
+  .particle { animation: none; }
+  .chapter-panel { will-change: auto; }
 }
